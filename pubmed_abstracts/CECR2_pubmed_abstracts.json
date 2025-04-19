@@ -1,0 +1,188 @@
+[
+  {
+    "pmid": "35108062",
+    "date": "2022 Feb 2",
+    "title": "CECR2 drives breast cancer metastasis by promoting NF-kappaB signaling and  macrophage-mediated immune suppression.",
+    "abstract": "Metastasis is the major cause of cancer-related deaths due to the lack of  effective therapies. Emerging evidence suggests that certain epigenetic and transcriptional regulators drive cancer metastasis and could be targeted for metastasis treatment. To identify epigenetic regulators of breast cancer metastasis, we profiled the transcriptomes of matched pairs of primary breast tumors and metastases from human patients. We found that distant metastases are more immune inert with increased M2 macrophages compared to their matched primary tumors. The acetyl-lysine reader, cat eye syndrome chromosome region candidate 2 (CECR2), was the top up-regulated epigenetic regulator in metastases associated with an increased abundance of M2 macrophages and worse metastasis-free survival. CECR2 was required for breast cancer metastasis in multiple mouse models, with more profound effect in the immunocompetent setting. Mechanistically, the nuclear factor kappaB (NF-kappaB) family member v-rel avian reticuloendotheliosis viral oncogene homolog A (RELA) recruits CECR2 to increase chromatin accessibility and activate the expression of their target genes. These target genes include multiple metastasis-promoting genes, such as TNC, MMP2, and VEGFA, and cytokine genes CSF1 and CXCL1, which are critical for immunosuppression at metastatic sites. Consistent with these results, pharmacological inhibition of CECR2 bromodomain impeded NF-kappaB-mediated immune suppression by macrophages and inhibited breast cancer metastasis. These results reveal that targeting CECR2 may be a strategy to treat metastatic breast cancer.",
+    "authors": [
+      "Zhang M",
+      "Liu ZZ",
+      "Aoshima K",
+      "Cai WL",
+      "Sun H",
+      "Xu T",
+      "Zhang Y",
+      "An Y",
+      "Chen JF",
+      "Chan LH",
+      "Aoshima A",
+      "Lang SM",
+      "Tang Z",
+      "Che X",
+      "Li Y",
+      "Rutter SJ",
+      "Bossuyt V",
+      "Chen X",
+      "Morrow JS",
+      "Pusztai L",
+      "Rimm DL",
+      "Yin M",
+      "Yan Q"
+    ],
+    "journal": "Science translational medicine"
+  },
+  {
+    "pmid": "38615488",
+    "date": "2024 Jul",
+    "title": "Optical controlled and nuclear targeted CECR2 competitor to downregulate CSF-1  for metastatic breast cancer immunotherapy.",
+    "abstract": "The crosstalk between breast cancer cells and tumor associated macrophages (TAMs)  greatly contributes to tumor progression and immunosuppression. In this work, cat eye syndrome chromosome region candidate 2 (CECR2) is identified to overexpress in breast cancer patients, which can recognize v-rel avian reticuloendotheliosis viral oncogene homolog A (RelA) and activate nuclear factor kappaB (NF-kappaB) to release colony stimulating factor-1 (CSF-1). Pharmacological inhibition of CECR2 by the bromodomain competitor (Bromosporine, Bro) can downregulate CSF-1 to inhibit M2 type TAMs. To amplify the immunotherapeutic effect, a chimeric peptide-based and optical controlled CECR2 competitor (designated as N-PB) is constructed to enhance the nuclear targeted delivery of Bro and initiate an immunogenic cell death (ICD). In vivo results indicate a favorable breast cancer targeting ability and primary tumor suppression effect of N-PB under optical irradiation. Importantly, N-PB downregulates CSF-1 by competitive inhibition of CECR2 and NF-kappaB(RelA) interactions, thus inhibiting immunosuppressive M2-like TAMs while improving the antitumorigenic M1-like phenotype. Ultimately, the systemic anti-tumor immunity is activated to suppress the metastatic breast cancer in an optical controlled manner. This study provides a promising therapeutic target and reliable strategy for metastatic breast cancer treatment by interrupting immunosuppressive crosstalk between tumor cells and macrophages.",
+    "authors": [
+      "Cen Y",
+      "Chen Y",
+      "Li X",
+      "Chen X",
+      "Yu B",
+      "Yan M",
+      "Yan N",
+      "Cheng H",
+      "Li S"
+    ],
+    "journal": "Biomaterials"
+  },
+  {
+    "pmid": "33542446",
+    "date": "2021 Feb 4",
+    "title": "Cecr2 mutant mice as a model for human cat eye syndrome.",
+    "abstract": "Cat eye syndrome (CES), a human genetic disorder caused by the inverted  duplication of a region on chromosome 22, has been known since the late 1890s. Despite the significant impact this disorder has on affected individuals, models for CES have not been produced due to the difficulty of effectively duplicating the corresponding chromosome region in an animal model. However, the study of phenotypes associated with individual genes in this region such as CECR2 may shed light on the etiology of CES. In this study we have shown that deleterious loss of function mutations in mouse Cecr2 effectively demonstrate many of the abnormal features present in human patients with CES, including coloboma and specific skeletal, kidney and heart defects. Beyond phenotypic analyses we have demonstrated the importance of utilizing multiple genetic backgrounds to study disease models, as we see major differences in penetrance of Cecr2-related abnormal phenotype between mouse strains, reminiscent of the variability in the human syndrome. These findings suggest that Cecr2 is involved in the abnormal features of CES and that Cecr2 mice can be used as a model system to study the wide range of phenotypes present in CES.",
+    "authors": [
+      "Dicipulo R",
+      "Norton KA",
+      "Fairbridge NA",
+      "Kibalnyk Y",
+      "Fox SC",
+      "Hornberger LK",
+      "McDermid HE"
+    ],
+    "journal": "Scientific reports"
+  },
+  {
+    "pmid": "33004947",
+    "date": "2020 Oct 1",
+    "title": "Cytotoxic activity of bromodomain inhibitor NVS-CECR2-1 on human cancer cells.",
+    "abstract": "Bromodomain (BRD), a protein module that recognizes acetylated lysine residues on  histones and other proteins, has recently emerged as a promising therapeutic target for human diseases such as cancer. While most of the studies have been focused on inhibitors against BRDs of the bromo- and extra-terminal domain (BET) family proteins, non-BET family BRD inhibitors remain largely unexplored. Here, we investigated a potential anticancer activity of the recently developed non-BET family BRD inhibitor NVS-CECR2-1 that targets the cat eye syndrome chromosome region, candidate 2 (CECR2). We show that NVS-CECR2-1 inhibits chromatin binding of CECR2 BRD and displaces CECR2 from chromatin within cells. NVS-CECR2-1 exhibits cytotoxic activity against various human cancer cells, killing SW48 colon cancer cells in particular with a submicromolar half maximum inhibition value mainly by inducing apoptosis. The sensitivity of the cancer cells to NVS-CECR2-1 is reduced by CECR2 depletion, suggesting that NVS-CECR2-1 exerts its activity by targeting CECR2. Interestingly, our data show that NVS-CECR2-1 also kills cancer cells by CECR2-independent mechanism. This study reports for the first time the cancer cell cytotoxic activity for NVS-CECR2-1 and provides a possibility of this BRD inhibitor to be developed as an anticancer therapeutic agent.",
+    "authors": [
+      "Park SG",
+      "Lee D",
+      "Seo HR",
+      "Lee SA",
+      "Kwon J"
+    ],
+    "journal": "Scientific reports"
+  },
+  {
+    "pmid": "21246654",
+    "date": "2011 Feb",
+    "title": "Role of chromatin remodeling gene Cecr2 in neurulation and inner ear development.",
+    "abstract": "The loss of Cecr2, which encodes a chromatin remodeling protein, has been  associated with the neural tube defect (NTD) exencephaly and open eyelids in mice. Here, we show that two independent mutations of Cecr2 are also associated with specific inner ear defects. Homozygous mutant 18.5 days post coitus (dpc) fetuses exhibited smaller cochleae as well as rotational defects of sensory cells and extra cell rows in the inner ear reminiscent of planar cell polarity (PCP) mutants. Cecr2 was expressed in the neuroepithelium, head mesenchyme, and the cochlear floor. Although limited genetic interaction for NTDs was seen with Vangl2, a microarray analysis of PCP genes did not reveal a direct connection to this pathway. The mechanism of Cecr2 action in neurogenesis and inner ear development is likely complex.",
+    "authors": [
+      "Dawe CE",
+      "Kooistra MK",
+      "Fairbridge NA",
+      "Pisio AC",
+      "McDermid HE"
+    ],
+    "journal": "Developmental dynamics : an official publication of the American Association of "
+  },
+  {
+    "pmid": "37424722",
+    "date": "2023",
+    "title": "Double whammy: the genetic variants in CECR2 and high Hcy on the development of  neural tube defects.",
+    "abstract": "Introduction: Neural tube defects (NTDs) are serious congenital malformations.  The etiology of NTDs involves both genetic and environmental factors. Loss of CECR2 in mice has been shown to result in NTDs. Our previous study indicated that high homocysteine (HHcy) levels could further reduced the expression level of CECR2. This investigation aims to explore the genetic influence of the chromatin remodeling gene, CECR2, in humans and determine if HHcy can have a synergistic effect on protein expression. Methods: We conducted Next-Generation Sequencing (NGS) of the CECR2 gene in 373 NTD cases and 222 healthy controls, followed by functional assay application to select and evaluate CECR2 missense variants and subsequent Western blotting to identify protein expression levels. Results: From the analysis, we identified nine rare, NTD-specific mutations within the CECR2 gene. Significantly, four missense variants (p.E327V, p.T521S, p.G701R, and p.G868R) were selected via functional screening. The E9.5 mouse ectodermal stem cell line NE-4C, transfected with plasmids expressing p.E327V, p.T521S, p.G868R variants or a recombinant harboring all four (named as 4Mut), exhibited notable reductions in CECR2 protein expression. Furthermore, exposure to homocysteine thiolactone (HTL), an extremely reactive homocysteine metabolite, amplified the reduction in CECR2 expression, accompanied by a significant increase in the apoptotic molecule Caspase3 activity, a potential NTD inducer. Importantly, folic acid (FA) supplementation effectively counteracted the CECR2 expression decline induced by CECR2 mutation and HTL treatment, leading to reduced apoptosis. Discussion: Our observations underscore a synergistic relationship between HHcy and genetic variations in CECR2 concerning NTDs, thereby reinforcing the concept of gene-environment interaction phenomena in NTD etiology.",
+    "authors": [
+      "Bai B",
+      "Jiang Q",
+      "Liu L",
+      "Liu C",
+      "Zhang Q"
+    ],
+    "journal": "Frontiers in genetics"
+  },
+  {
+    "pmid": "32321240",
+    "date": "2020 May 28",
+    "title": "Optimization of Potent ATAD2 and CECR2 Bromodomain Inhibitors with an Atypical  Binding Mode.",
+    "abstract": "Most bromodomain inhibitors mimic the interactions of the natural acetylated  lysine (KAc) histone substrate through key interactions with conserved asparagine and tyrosine residues within the binding pocket. Herein we report the optimization of a series of phenyl sulfonamides that exhibit a novel mode of binding to non-bromodomain and extra terminal domain (non-BET) bromodomains through displacement of a normally conserved network of four water molecules. Starting from an initial hit molecule, we report its divergent optimization toward the ATPase family AAA domain containing 2 (ATAD2) and cat eye syndrome chromosome region, candidate 2 (CECR2) domains. This work concludes with the identification of (R)-55 (GSK232), a highly selective, cellularly penetrant CECR2 inhibitor with excellent physicochemical properties.",
+    "authors": [
+      "Lucas SCC",
+      "Atkinson SJ",
+      "Bamborough P",
+      "Barnett H",
+      "Chung CW",
+      "Gordon L",
+      "Mitchell DJ",
+      "Phillipou A",
+      "Prinjha RK",
+      "Sheppard RJ",
+      "Tomkinson NCO",
+      "Watson RJ",
+      "Demont EH"
+    ],
+    "journal": "Journal of medicinal chemistry"
+  },
+  {
+    "pmid": "20589882",
+    "date": "2010 Aug",
+    "title": "Cecr2 mutations causing exencephaly trigger misregulation of  mesenchymal/ectodermal transcription factors.",
+    "abstract": "BACKGROUND: Over 200 mouse genes are associated with neural tube defects (NTDs),  including Cecr2, the bromodomain-containing subunit of the CERF chromatin remodeling complex. METHODS: Gene-trap mutation Cecr2(Gt45Bic) results in 74% exencephaly (equivalent of human anencephaly) on the BALB/c strain. Gene expression altered during cranial neural tube closure by the Cecr2 mutation was identified through microarray analysis of 11-14 somites stage Cecr2(Gt45Bic)embryos. RESULTS: Analysis of Affymetrix Mouse 430 2.0 chips detected 60 transcripts up-regulated and 54 transcripts down-regulated in the Cecr2(Gt45Bic) embryos (fold > 1.5, p < 0.05). The Cecr2 transcript was reduced only approximately 7- to 14-fold from normal levels, suggesting the Cecr2(Gt45Bic) is a hypomorphic mutation. We therefore generated a novel Cecr2 null allele (Cecr2 (tm1.1Hemc)). Resulting mutants displayed a stronger penetrance of exencephaly than Cecr2(Gt45Bic) in both BALB/c and FVB/N strains, in addition to midline facial clefts and forebrain encephalocele in the FVB/N strain. The Cecr2 transcript is reduced 260-fold in the Cecr2(tm1.1Hemc) line. Subsequent qRT-PCR using Cecr2 (tm1.1Hemc) mutant heads confirmed downregulation of transcription factors Alx1/Cart1, Dlx5, Eya1, and Six1. CONCLUSIONS: As both Alx1/Cart1 and Dlx5 mouse mutations result in exencephaly, we hypothesize that changes in expression of these mesenchymal/ectodermal transcription factors may contribute to NTDs associated with Cecr2.",
+    "authors": [
+      "Fairbridge NA",
+      "Dawe CE",
+      "Niri FH",
+      "Kooistra MK",
+      "King-Jones K",
+      "McDermid HE"
+    ],
+    "journal": "Birth defects research. Part A, Clinical and molecular teratology"
+  },
+  {
+    "pmid": "33826083",
+    "date": "2021 Sep",
+    "title": "A novel tumor suppressor CECR2 down regulation links glutamine metabolism  contributes tumor growth in laryngeal squamous cell carcinoma.",
+    "abstract": "PURPOSE: Glutamine plays an important role in tumor metabolism and progression.  This research aimed to find out how Gln exert their effects on laryngeal squamous cell carcinoma (LSCC). METHODS: Cell proliferation was measured by CCK8 and EdU assay, mitochondrial bioenergetic activity was measured by mitochondrial stress tests. Gene expression profiling was revealed by RNA sequencing and validated by RT-qPCR. In LSCC patients, protein expression in tumor and adjacent tissues was examined and scored by IHC staining. RNAi was performed by stably expressed shRNA in TU177 cells. In vivo tumor growth analysis was performed using a nude mouse tumorigenicity model. RESULTS: Gln deprivation suppressed TU177 cell proliferation, which was restored by alphaKG supplementation. By transcriptomic analysis, we identified CECR2, which encodes a histone acetyl-lysine reader, as the downstream target gene for Gln and alphaKG. In LSCC patients, the expression of CECR2 in tumors was lower than adjacent tissues. Furthermore, deficiency of CECR2 promoted tumor cell growth both in vitro and in vivo, suggesting it has tumor suppressor effects. Besides, cell proliferation inhibited by Gln withdrawal could be restored by CECR2 depletion, and the proliferation boosted by alphaKG supplementation could be magnified either, suggested that CECR2 feedback suppressed Gln and alphaKG's effect on tumor growth. Transcriptomic profiling revealed CECR2 regulated the expression of a series of genes involved in tumor progression. CONCLUSION: We confirmed the Gln-alphaKG-CECR2 axis contributes to tumor growth in LSCC. This finding provided a potential therapeutic opportunity for the use of associated metabolites as a potential treatment for LSCC.",
+    "authors": [
+      "Wang X",
+      "Xu C",
+      "Wang S",
+      "Huang W",
+      "Liu Y",
+      "Zhang X",
+      "Li N",
+      "Gao Z",
+      "Wang F",
+      "Zhang N",
+      "Guan J",
+      "Yi H",
+      "Liu F"
+    ],
+    "journal": "Clinical & translational oncology : official publication of the Federation of "
+  },
+  {
+    "pmid": "15640247",
+    "date": "2005 Feb 15",
+    "title": "CECR2, a protein involved in neurulation, forms a novel chromatin remodeling  complex with SNF2L.",
+    "abstract": "Chromatin remodeling complexes play critical roles in development. Here we  describe a transcription factor, CECR2, which is involved in neurulation and chromatin remodeling. CECR2 shows complex alternative splicing, but all variants contain DDT and bromodomain motifs. A mutant mouse line was generated from an embryonic stem cell line containing a genetrap within Cecr2. Reporter gene expression demonstrated Cecr2 expression to be predominantly neural in the embryo. Mice homozygous for the Cecr2 genetrap-induced mutation show a high penetrance of the neural tube defect exencephaly, the human equivalent of anencephaly, in a strain-dependent fashion. Biochemical isolation of CECR2 revealed the presence of this protein as a component of a novel heterodimeric complex termed CECR2-containing remodeling factor (CERF). CERF comprises CECR2 and the ATP-dependent chromatin remodeler SNF2L, a mammalian ISWI ortholog expressed predominantly in the central nervous system. CERF is capable of remodeling chromatin in vitro and displays an ATP hydrolyzing activity that is stimulated by nucleosomes. Together, these data identify a novel chromatin remodeling complex with a critical role in neurulation.",
+    "authors": [
+      "Banting GS",
+      "Barak O",
+      "Ames TM",
+      "Burnham AC",
+      "Kardel MD",
+      "Cooch NS",
+      "Davidson CE",
+      "Godbout R",
+      "McDermid HE",
+      "Shiekhattar R"
+    ],
+    "journal": "Human molecular genetics"
+  }
+]

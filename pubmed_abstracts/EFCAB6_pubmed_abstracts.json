@@ -1,0 +1,16 @@
+[
+  {
+    "pmid": "22749035",
+    "date": "2012 Jun",
+    "title": "Identification of a HMGA2-EFCAB6 gene rearrangement following next-generation  sequencing in a patient with a t(12;22)(q14.3;q13.2) and JAK2V617F-positive myeloproliferative neoplasm.",
+    "abstract": "Myeloproliferative neoplasms (MPNs) result from genetically altered hematopoietic  stem cells that retain the capacity for multilineage differentiation. The study of genomic mutations identified so far suggests that they occur after a common ancestral event or that different mutations result in similar MPN phenotypes. We report analysis of a chromosomal translocation, t(12;22)(q14.3;q13.2), in a patient with a BCR-ABL1-negative, JAK2V617F-positive MPN. Comparative genomic hybridization (CGH) array and targeted sequencing detected no mutation in nine genes reported to influence the JAK2V617F-driven MPNs (MPL, LNK, CBL, TET2, EZH2, IKZF1, IDH1, IDH2, ASXL1). Next-generation sequencing revealed a balanced HMGA2-EFCAB6 genomic rearrangement. The HMGA2 breakpoint leads to the loss of seven 3'UTR binding sites for the microRNA (miRNA) let-7 tumor suppressor. The breakpoint in the EFCAB6 gene abrogates transcription of EFCAB6. Measurement of expression showed retention of HMGA2 transcription and no detectable EFCAB6 transcript. Allele burden comparison in a sample containing the translocation, showed 90% HMGA2-EFCAB6 versus 50% JAK2V617F allele dose, suggesting HMGA2-EFCAB6 rearrangement plays a more ancestral role, pre-JAK2V617F, in the neoplastic process. The pathogenicity of the translocation may rest on collaborations among JAK2V617F-induced constitutive activation of JAK2, the oncogenic property of HMGA2, and disrupted pathways, such as alteration in DJ-1 expression, resulting from the impact of EFCAB6 abrogation.",
+    "authors": [
+      "Martin SE",
+      "Sausen M",
+      "Joseph A",
+      "Kingham BF",
+      "Martin ES"
+    ],
+    "journal": "Cancer genetics"
+  }
+]

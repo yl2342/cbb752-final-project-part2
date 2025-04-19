@@ -1,0 +1,43 @@
+[
+  {
+    "pmid": "31702029",
+    "date": "2019 Nov",
+    "title": "TAFA5 promotes proliferation and migration in gastric cancer.",
+    "abstract": "TAFA chemokine like family member 5 (TAFA5), a TAFA family member that encodes  small secreted proteins in the central nervous system, has been demonstrated to have increased expression in human malignancies. However, the expression and function of TAFA5 in gastric cancer (GC) remains unclear. In the present study, public datasets and human GC samples were used to determine the TAFA5 expression levels. The results revealed that TAFA5 was upregulated in GC when compared with adjacent normal tissues. Overexpression of TAFA5 in GC was associated with poor differentiation, and worse tumor, nodal and metastasis stages. In addition, high TAFA5 expression was correlated with unfavorable patient prognoses. In vitro experiments indicated that downregulation of TAFA5 inhibited the proliferation and migration of GC cell lines. Finally, the results from gene set enrichment analysis using data from The Cancer Genome Atlas revealed that TAFA5 expression was significantly correlated with genes associated with epithelial\u2011mesenchymal transition, which was further confirmed by western blot analysis. In conclusion, the results of the present study suggested that TAFA5 had significant effects on GC progression, suggesting that it may serve as a potential therapeutic target for GC therapy.",
+    "authors": [
+      "Hu Z",
+      "Niu G",
+      "Ren J",
+      "Wang X",
+      "Chen L",
+      "Hong R",
+      "Ke C"
+    ],
+    "journal": "Molecular medicine reports"
+  },
+  {
+    "pmid": "32317715",
+    "date": "2021 Jun",
+    "title": "FAM19A5/TAFA5, a novel neurokine, plays a crucial role in depressive-like and  spatial memory-related behaviors in mice.",
+    "abstract": "FAM19A5/TAFA5 is a member of the family with sequence similarity 19 with unknown  function in emotional and cognitive regulation. Here, we reported that FAM19A5 was highly expressed in the embryonic and postnatal mouse brain, especially in the hippocampus. Behaviorally, genetic deletion of Fam19a5 resulted in increased depressive-like behaviors and impaired hippocampus-dependent spatial memory. These behavioral alterations were associated with the decreased expression of alpha-amino-3-hydroxy-5-methyl-4-isoxazolepropionic acid receptors and N-methyl-D-aspartic acid receptors, as well as significantly reduced glutamate release and neuronal activity in the hippocampus. Subsequently, these changes led to the decreased density of dendritic spines. In recent years, the roles of chronic stress participating in the development of depression have become increasingly clear, but the mechanism remains to be elucidated. We found that the levels of FAM19A5 in plasma and hippocampus of chronic stress-treated mice were significantly decreased whereas overexpression of human FAM19A5 selectively in the hippocampus could attenuate chronic stress-induced depressive-like behaviors. Taken together, our results revealed for the first time that FAM19A5 plays a key role in the regulation of depression and spatial cognition in the hippocampus. Furthermore, our study provided a new mechanism for chronic stress-induced depression, and also provided a potential biomarker for the diagnosis and a new strategy for the treatment of depression.",
+    "authors": [
+      "Huang S",
+      "Zheng C",
+      "Xie G",
+      "Song Z",
+      "Wang P",
+      "Bai Y",
+      "Chen D",
+      "Zhang Y",
+      "Lv P",
+      "Liang W",
+      "She S",
+      "Li Q",
+      "Liu Z",
+      "Wang Y",
+      "Xing GG",
+      "Wang Y"
+    ],
+    "journal": "Molecular psychiatry"
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "pmid": "34958451",
+    "date": "2022 Feb",
+    "title": "The beta-Secretase Substrate Seizure 6-Like Protein (SEZ6L) Controls Motor Functions  in Mice.",
+    "abstract": "The membrane protein seizure 6-like (SEZ6L) is a neuronal substrate of the  Alzheimer's disease protease BACE1, and little is known about its physiological function in the nervous system. Here, we show that SEZ6L constitutive knockout mice display motor phenotypes in adulthood, including changes in gait and decreased motor coordination. Additionally, SEZ6L knockout mice displayed increased anxiety-like behaviour, although spatial learning and memory in the Morris water maze were normal. Analysis of the gross anatomy and proteome of the adult SEZ6L knockout cerebellum did not reveal any major differences compared to wild type, indicating that lack of SEZ6L in other regions of the nervous system may contribute to the phenotypes observed. In summary, our study establishes physiological functions for SEZ6L in regulating motor coordination and curbing anxiety-related behaviour, indicating that aberrant SEZ6L function in the human nervous system may contribute to movement disorders and neuropsychiatric diseases.",
+    "authors": [
+      "Ong-Palsson E",
+      "Njavro JR",
+      "Wilson Y",
+      "Pigoni M",
+      "Schmidt A",
+      "Muller SA",
+      "Meyer M",
+      "Hartmann J",
+      "Busche MA",
+      "Gunnersen JM",
+      "Munro KM",
+      "Lichtenthaler SF"
+    ],
+    "journal": "Molecular neurobiology"
+  },
+  {
+    "pmid": "17804757",
+    "date": "2007 Sep 1",
+    "title": "Seizure 6-like (SEZ6L) gene and risk for lung cancer.",
+    "abstract": "DNA pooling in combination with high-throughput sequencing was done as a part of  the Sequenom-Genefinder project. In the pilot study, we tested 83,715 single nucleotide polymorphisms (SNP), located primarily in gene-based regions, to identify polymorphic susceptibility variants for lung cancer. For this pilot study, 369 male cases and 287 controls of both sexes (white Europeans of Southern German origin) were analyzed. The study identified a candidate region in 22q12.2 that contained numerous SNPs showing significant case-control differences and that coincides with a region that was shown previously to be frequently deleted in lung cancer cell lines. The candidate region overlies the seizure 6-like (SEZ6L) gene. The pilot study identified a polymorphic Met430Ile substitution in the SEZ6L gene (SNP rs663048) as the top candidate for a variant modulating risk of lung cancer. Two replication studies were conducted to assess the association of SNP rs663048 with lung cancer risk. The M. D. Anderson Cancer Center study included 289 cases and 291 controls matched for gender, age, and smoking status. The Liverpool Lung Project (a United Kingdom study) included 248 cases and 233 controls. Both replication studies showed an association of the rs663048 with lung cancer risk. The homozygotes for the variant allele had more than a 3-fold risk compared with the wild-type homozygotes [combined odds ratio (OR), 3.32; 95% confidence interval (95% CI), 1.81-7.21]. Heterozygotes also had a significantly elevated risk of lung cancer from the combined replication studies with an OR of 1.15 (95% CI, 1.04-1.59). The effect remained significant after adjusting for age, gender, and pack-years of tobacco smoke. We also compared expression of SEZ6L in normal human bronchial epithelial cells (n = 7), non-small cell lung cancer (NSCLC; n = 52), and small cell lung cancer (SCLC; n = 22) cell lines by using Affymetrix HG-U133A and HG-U133B GeneChips. We found that the average expression level of SEZ6L in NSCLC cell lines was almost two times higher and in SCLC cell lines more than six times higher when compared with normal lung epithelial cell lines. Using the National Center for Biotechnology Information Gene Expression Omnibus database, we found a approximately 2-fold elevated and statistically significant (P = 0.004) level of SEZ6L expression in tumor samples compared with normal lung tissues. In conclusion, the results of these studies representing 906 cases compared with 811 controls indicate a role of the SEZ6L Met430Ile polymorphic variant in increasing lung cancer risk.",
+    "authors": [
+      "Gorlov IP",
+      "Meyer P",
+      "Liloglou T",
+      "Myles J",
+      "Boettger MB",
+      "Cassidy A",
+      "Girard L",
+      "Minna JD",
+      "Fischer R",
+      "Duffy S",
+      "Spitz MR",
+      "Haeussinger K",
+      "Kammerer S",
+      "Cantor C",
+      "Dierkesmann R",
+      "Field JK",
+      "Amos CI"
+    ],
+    "journal": "Cancer research"
+  },
+  {
+    "pmid": "11175339",
+    "date": "2000 Dec 14",
+    "title": "Identification of a 428-kb homozygously deleted region disrupting the SEZ6L gene  at 22q12.1 in a lung cancer cell line.",
+    "abstract": "Frequent allelic losses on chromosome 22q in small cell lung carcinomas (SCLCs)  and advanced non-small cell lung carcinomas indicate the presence of tumor suppressor gene(s) on this chromosome arm. We detected a homozygous deletion at 22q12.1 in a SCLC cell line, Lu24. Cloning of the breakpoints of the Lu24 deletion revealed that the deletion was interstitial and 428, 131 bp in size. The deleted region contained the SEZ6L (Seizure 6-like) gene, whose structure had been partially determined by the chromosome 22 sequencing project. We determined the full length cDNA sequence for the SEZ6L gene based on the genomic sequence for the SEZ6L locus using the GENSCAN program and the RT - PCR method. The deduced SEZ6L protein was a transmembrane protein of 1024 amino acids with multiple domains involved in protein - protein interaction and signal transduction. SEZ6L expression was detected in a variety of human tissues, including lung, while its expression was detected in 14 (30%) of 46 lung cancer cell lines examined. Missense mutations were detected in three (7%) of the 46 cell lines, and a 1 bp deletion in the polypyrimidine tract preceding exon 4 was detected in one (2%) of 46 primary lung cancers. Therefore, it is possible that genetic and/or epigenetic SEZ6L alterations are involved in the development and/or progression in a subset of lung cancer, although functional analysis of the SEZ6L gene as well as molecular analysis of other genes in the homozygously deleted region is necessary to understand the pathogenetic significance of 22q deletions in human lung carcinogenesis.",
+    "authors": [
+      "Nishioka M",
+      "Kohno T",
+      "Takahashi M",
+      "Niki T",
+      "Yamada T",
+      "Sone S",
+      "Yokota J"
+    ],
+    "journal": "Oncogene"
+  }
+]
