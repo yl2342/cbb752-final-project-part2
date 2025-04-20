@@ -1,0 +1,34 @@
+2025-04-20 11:29:08,804 - INFO - Starting LLM Mining script... Logging to logs/llm_mining_20250420_112908.log
+2025-04-20 11:29:08,805 - INFO - Arguments received: Namespace(check=False, input_dir='pmc_full_texts', model='gemini-2.0-flash')
+2025-04-20 11:29:08,805 - INFO - .env file loaded (if exists).
+2025-04-20 11:29:08,805 - INFO - Loading PMC articles from directory: 'pmc_full_texts'
+2025-04-20 11:29:08,806 - INFO - Found 10 PMC article JSON files in 'pmc_full_texts'
+2025-04-20 11:29:08,807 - INFO - Loaded 5 articles for gene 'SYN3' from 'SYN3_pmc_articles.json'
+2025-04-20 11:29:08,808 - INFO - Loaded 5 articles for gene 'EFCAB6' from 'EFCAB6_pmc_articles.json'
+2025-04-20 11:29:08,809 - INFO - Loaded 5 articles for gene 'LARGE1' from 'LARGE1_pmc_articles.json'
+2025-04-20 11:29:08,810 - INFO - Loaded 5 articles for gene 'CELSR1' from 'CELSR1_pmc_articles.json'
+2025-04-20 11:29:08,811 - INFO - Loaded 5 articles for gene 'PACSIN2' from 'PACSIN2_pmc_articles.json'
+2025-04-20 11:29:08,813 - INFO - Loaded 5 articles for gene 'CECR2' from 'CECR2_pmc_articles.json'
+2025-04-20 11:29:08,814 - INFO - Loaded 5 articles for gene 'SEZ6L' from 'SEZ6L_pmc_articles.json'
+2025-04-20 11:29:08,816 - INFO - Loaded 5 articles for gene 'TAFA5' from 'TAFA5_pmc_articles.json'
+2025-04-20 11:29:08,817 - INFO - Loaded 5 articles for gene 'MYO18B' from 'MYO18B_pmc_articles.json'
+2025-04-20 11:29:08,819 - INFO - Loaded 5 articles for gene 'TBC1D22A' from 'TBC1D22A_pmc_articles.json'
+2025-04-20 11:29:08,819 - INFO - Total articles loaded: 50 across 10 genes.
+2025-04-20 11:29:08,819 - INFO - Generating analysis prompt...
+2025-04-20 11:29:08,822 - INFO - Prompt generation complete.
+2025-04-20 11:29:08,822 - INFO - Calculating prompt token count for model: gemini-2.0-flash...
+2025-04-20 11:29:12,083 - INFO - ---> Estimated token count for the generated prompt: 531417 <--- (gemini-2.0-flash)
+2025-04-20 11:29:12,085 - INFO - Saved analysis prompt to prompts/fulltext_analysis_prompt.txt
+2025-04-20 11:29:12,085 - INFO - Generated analysis prompt for 10 genes with 50 total articles
+2025-04-20 11:29:12,085 - WARNING - --- CONFIRMATION REQUIRED BEFORE API CALL ---
+2025-04-20 11:29:12,085 - WARNING - Model to be used: gemini-2.0-flash
+2025-04-20 11:29:12,085 - WARNING - Calculated Input Tokens: 531417
+2025-04-20 11:29:12,085 - WARNING - Maximum Output Tokens Configured: 65586
+2025-04-20 11:29:12,085 - WARNING - Please review model capabilities, pricing, and potential rate limits, especially for free tiers:
+2025-04-20 11:29:12,086 - WARNING - Reference: https://ai.google.dev/gemini-api/docs/models
+2025-04-20 11:29:15,981 - INFO - User confirmed. Proceeding with API call...
+2025-04-20 11:29:15,982 - INFO - Sending prompt to Gemini API using model: gemini-2.0-flash...
+2025-04-20 11:29:40,982 - INFO - Response received from Gemini
+2025-04-20 11:29:40,984 - INFO - Saved analysis response to llm_responses/part2_fulltext_mining_response.txt
+2025-04-20 11:29:40,984 - INFO - Analysis complete. Prompt saved to prompts/fulltext_analysis_prompt.txt and response saved to llm_responses/part2_fulltext_mining_response.txt
+2025-04-20 11:29:40,984 - INFO - LLM Mining script finished successfully.
