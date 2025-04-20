@@ -92,7 +92,9 @@ This will:
 Process all collected PMC publications for the prioritized genes to construct a prompt embeed with the part II instruction for Gemini AI to conduct a comprehensive analysis as required
 
 ```shell
-python llm_mining.py
+python llm_mining.py 
+# or 
+python llm_mining.py -m gemini-2.0-flash
 ```
 
 This will:
