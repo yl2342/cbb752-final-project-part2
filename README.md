@@ -59,14 +59,24 @@ You can obtain a Gemini API key from [Google AI Studio](https://aistudio.google.
 ### Gemini Model
 - [Gemini API documentation](https://ai.google.dev/gemini-api/docs)
 - Gemini model:
-  - Gemini 2.0 flash (Default)
+  - Gemini 2.0 flash
     - model name: `gemini-2.0-flash`
-    - Beware of the Free tier rate limit (should be enough for this project, generated prompt from 50 pmc fulltext articles is around 500,000 tokens)
+    - Task: generating the overall summary
+      - Need to trade-off intelligence for higher rate limit for this tasks: overall summary prompt input tokens consists of 50 full text articles and is over 500 k tokens. (2.5 flash: 250k, 2.0 flash: 1m)
+    - Rate limit:
       - RPM (requests per minute): 15
       - TPM (tokens per minute): 1,000,000
       - RPD (requests per day): 1500
-    - Run time: ~ 1 minute
     
+    - Run time: ~ 1 minute
+  - Gemini 2.5 flash 
+    - model name: `gemini-2.5-flash-preview-04-17`
+    - Task: generating the comparative analysis with external databases search for uniProt (with Google search grounding tool). Now input token is only around 1k so no rate limit issue for input/output tokens for using this most intelligent model with grounding (search) tool support up to date.
+    - Rate limit:
+      - RPM (requests per minute): 10
+      - TPM (tokens per minute): 250,000
+      - RPD (requests per day): 500
+    - Run time: ~ 1 minute
 
 ## Usage
 
@@ -88,8 +98,9 @@ This will:
   - full_text
 
 ### 2. Analyze the Retrieved Literature with Gemini AI
+Process all collected PMC publications for the prioritized genes to integrate the part II instruction into to prompt LLM to generate the overall summary. Then with the constructed summary embeded as the sequential prompt, ask LLM to do external database search on uniProt and generate the comparative analysis report. 
 
-Process all collected PMC publications for the prioritized genes to construct a prompt embeed with the part II instruction for Gemini AI to conduct a comprehensive analysis as required
+ Gemini AI to conduct a comprehensive analysis as required.
 
 ```shell
 python llm_mining.py 
@@ -99,18 +110,12 @@ python llm_mining.py -m gemini-2.0-flash
 
 This will:
 - Load all the PMC full text articles from `pmc_full_texts/`
-- Generate a prompt embeed with the part II instruction
-- Call the Gemini API to analyze the organized literature
-- Save both the prompt and LLM response to files:
-  - `prompts/fulltext_analysis_prompt.txt`
-  - `llm_responses/part2_fulltext_mining_response.txt`
+- Generate a prompt embeded with the part II instruction for the overall summary task, stored in `prompts/overall_summary_prompt.txt`
+- Call the Gemini API use `gemini-2.0-flash` to generate the overall summary and save the overall summary to `llm_responses/part2_fulltext_mining_response.txt`
+- With the overall summary embeded as the sequential prompt, construct a new prompt and save it to `prompts/comparative_analysis_prompt.txt` for the comparative analysis task with Google search grounding tool, call the Gemini API use `gemini-2.5-flash-preview-04-17` to generate the comparative analysis report and save the report to `llm_responses/part2_fulltext_mining_response.txt`
+  - specifically, when asked to type model name in the terminal, first make sure the input and estimated output tokens are within the rate limit, then use `gemini-2.5-flash-preview-04-17`
+- You can also find extra information in the logs/ and debug/ subdirectories.
 
-
-You can also use the `--check`/`-c` flag to just check the generated prompt and the estimated input tokens first without sending the API request, for sanity check. 
-
-```shell
-python llm_mining.py -c # Only generate and save prompt without calling the API (for sanity check)
-```
 
 --- 
 ## Output and results
@@ -124,113 +129,125 @@ The PMC full text articles are saved as a JSON file with detailed metadata for e
 
 ### Analysis Prompt
 The prompt file contains the structured input to the language model, including all article full text and analysis instructions.
+- `prompts/overall_summary_prompt.txt`: the prompt for the overall summary task
+- `prompts/comparative_analysis_prompt.txt`: the prompt for the comparative analysis task, **based on the previous overall summary response**
 
 ### Analysis Response
 The response file contains the Gemini-generated analysis based on the generated prompt.
+- `llm_responses/overall_summary.txt`: the response for the overall summary task
+- `llm_responses/comparative_analysis.txt`: the response for the comparative analysis task
 
+### Debug Files
+- `debug/`: directory for raw Gemini API response 
+- `logs/`: directory for logging information
 --- 
 
 ## File Structure
 
 ```
 geneinsight/
-├── llm_mining.py             # Gemini analysis script
+├── llm_mining.py             # LLM mining script
 ├── pmc_fulltext_fetcher.py   # PMC full text fetcher script
 ├── .env                      # Environment variables (email and API key)
 ├── prioritized_genes_from_part1.txt # Prioritized genes from part 1
 ├── pmc_full_texts/         # Directory for stored PubMed results
 │   └── <gene>_pmc_fulltext.json    # JSON files with article data
 ├── prompts/                  # Directory for generated prompts
-│   └── fulltext_analysis_prompt.txt
+│   └── comparative_analysis_prompt.txt
+│   └── overall_summary_prompt.txt
 └── llm_responses/            # Directory for analysis results
-    └── part2_fulltext_mining_response.txt
+    └── overall_summary.txt
+    └── comparative_analysis.txt
+    └── comparative_analysis_grounding.json  # Grounding references for comparative analysis 
+
 ```
 
+---
+## Results (API call version, temperature = 0, better reproducibility)
+
+
+### Overall Summary
+
+This report summarizes the analysis of 50 full-text articles from the PMC Open Access Subset, focusing on human-relevant biological information related to 10 different genes. The analysis aimed to extract frequent and important biological terms, key findings, gene-disease associations, and correlations across publications.
+
+**Top 5 Biological Terms, Key Findings, and Gene-Disease Associations:**
+
+*   **Water-Deficit Stress:** This term appears frequently in the context of *SYN3* gene regulation in *Populus tremula* x *Populus alba*. Articles describe the development of synthetic promoters inducible by water-deficit stress, demonstrating the potential for engineering stress-tolerant plants (PMCID: 11123411).
+*   **Retinal Ganglion Cells (RGCs):** Several articles highlight the importance of RGCs in diabetic retinopathy (DR) and the neuroprotective effects of compounds like Syn3. The articles show that Syn3 enhances BDNF signaling to protect RGCs from degeneration in DR model mice (PMCID: 11528515).
+*   **Behavioral Flexibility:** This term is central to studies involving the *SYN3* gene, particularly in the context of reversal learning. The articles suggest that *SYN3* function is related to behavioral flexibility, with mice lacking functional *SYN3* exhibiting deficits in reversal learning performance (PMCID: 8431823).
+*   **BDNF Signaling:** BDNF signaling is a key pathway implicated in the survival and function of retinal ganglion cells. The articles show that Syn3 enhances BDNF-TrkB signaling, providing neuroprotection in diabetic retinopathy (PMCID: 11528515).
+*   **GUS Expression:** The expression of the *GUS* reporter gene, driven by synthetic promoters, is used to assess promoter activity and tissue specificity in transgenic plants. The articles show that Syn3-derived promoters can drive *GUS* expression in green tissues under water-deficit stress (PMCID: 11123411).
+
+**Correlations Between Terms:**
+
+*   A strong correlation exists between water-deficit stress and *SYN3* promoter activity in plants. The synthetic promoters derived from water-deficit responsive genes are shown to be induced by water cessation, indicating a functional link between the stress condition and gene expression (PMCID: 11123411).
+*   There is a correlation between BDNF signaling and RGC survival in diabetic retinopathy. Syn3, a compound that enhances BDNF signaling, is shown to protect RGCs from degeneration in DR model mice, suggesting that bolstering BDNF signaling can offer neuroprotection in diabetes (PMCID: 11528515).
+*   A correlation exists between *Syn3* gene dosage and behavioral flexibility. Mice with different numbers of functional *Syn3* alleles exhibit varying degrees of behavioral flexibility in reversal learning tasks, suggesting a dose-dependent effect of *Syn3* on this cognitive trait (PMCID: 8431823).
+*   There is a correlation between M30 and M65 levels in urine and complete remission of bladder cancer. Patients with a CR had M30 and M65 levels in their urine that returned to normal, while patients who did not achieve a CR had M30 and M65 levels that remained high (PMCID: 3962717).
+
+**Implications for Disease:**
+
+*   The correlation between water-deficit stress and *SYN3* promoter activity has implications for engineering drought-resistant crops. Understanding the regulatory elements that control *SYN3* expression can help develop strategies to improve plant survival under water-limited conditions.
+*   The correlation between BDNF signaling and RGC survival has implications for developing new therapies for diabetic retinopathy. Enhancing BDNF signaling with compounds like Syn3 may offer a neuroprotective approach to prevent vision loss in diabetic patients (PMCID: 11528515).
+*   The correlation between *Syn3* gene dosage and behavioral flexibility has implications for understanding psychiatric disorders characterized by inflexible behavior. Identifying genetic mechanisms that contribute to impaired flexibility may lead to new treatments for conditions like schizophrenia and autism (PMCID: 8431823).
+*   The correlation between M30 and M65 levels in urine and complete remission of bladder cancer has implications for monitoring treatment response and predicting prognosis. Measuring these markers in urine may provide a non-invasive way to assess tumor cell kill and identify patients who are more likely to achieve a CR (PMCID: 3962717).
+*   The identification of Syn3 as a BDNF signaling enhancer has implications for treating neurological disorders. Syn3's ability to boost BDNF signaling and protect RGCs suggests it could be a therapeutic agent for conditions involving retinal neurodegeneration (PMCID: 11528515).
+
+In summary, the analysis of these 50 articles reveals important insights into gene function, regulatory mechanisms, and potential therapeutic targets for a range of human diseases. The correlations identified between specific terms highlight the interconnectedness of biological processes and the potential for developing targeted interventions based on these relationships.
+
+### Comparative Analysis with External Databases UniProt
+
+This analysis compares the provided summary of 50 scientific articles on 10 genes with information from the UniProt database.
+
+Consistencies Identified:
+
+For the SYN3 gene, the UniProt database describes it as a neuronal protein involved in regulating neurotransmitter release and synaptogenesis. This aligns with the summary's findings regarding SYN3's role in behavioral flexibility and BDNF signaling, both of which are relevant to neuronal function and survival, particularly in the context of retinal ganglion cells and diabetic retinopathy as mentioned in the summary. Disease associations for SYN3 in external databases, such as retinal dystrophies, also show consistency with the summary's discussion of retinal ganglion cells and diabetic retinopathy.
+
+Discrepancies Identified:
+
+A major discrepancy is the significant focus in the provided summary on the role of SYN3 in water-deficit stress in Populus plants and its effect on GUS expression. UniProt's primary annotation for human SYN3 centers on its neuronal function and calcium regulation, with no mention of plant-specific stress responses or GUS reporter gene activity.
+
+Furthermore, the summary includes a correlation between M30 and M65 levels in urine and bladder cancer remission, associating it with the overall findings without clearly linking it to any of the 10 genes, and this finding is not supported by the UniProt information for SYN3 or the other genes searched.
+
+Most notably, the provided summary contains no specific biological terms, key findings, gene-disease associations, or correlations for the other nine genes: EFCAB6, LARGE1, CELSR1, PACSIN2, CECR2, SEZ6L, TAFA5, MYO18B, and TBC1D22A. In contrast, UniProt provides functional annotations and, in many cases, associated diseases for each of these genes. For example, LARGE1 is described as a glycosyltransferase involved in muscular dystrophy, CELSR1 is linked to neural tube defects and lymphatic malformation, PACSIN2 is involved in vesicle transport and endocytosis, CECR2 is a chromatin remodeling regulator associated with Cat Eye Syndrome, SEZ6L is a membrane protein potentially involved in neuronal ER function and linked to cancers, TAFA5 is a chemokine-like protein regulating cell migration, MYO18B is a myosin involved in muscle and intracellular trafficking and linked to Klippel-Feil syndrome and lung cancer, and TBC1D22A is a Rab GTPase-activating protein linked to developmental and epileptic encephalopathy.
+
+Significance of Findings:
+
+The consistencies for SYN3 suggest that the text mining process successfully extracted some relevant information about its known human biological roles from the analyzed articles. However, the significant discrepancies highlight limitations in the initial analysis. The inclusion of plant-specific findings for SYN3 and the seemingly unrelated bladder cancer information suggest that the article set or the text mining process may have included or prioritized non-human data and potentially irrelevant correlations. The complete absence of information for the majority of the genes in the summary indicates that the initial analysis failed to extract or summarize relevant biological information for these genes from the 50 articles, suggesting either a lack of coverage of these genes in the selected articles or an inability of the text mining approach to identify and synthesize the relevant information for these genes. A more focused article selection or a more robust text mining methodology would be necessary to provide a comprehensive summary across all targeted genes based on external database knowledge.
 
 ---
 
-## Results 
+## Results (old, browser chat version)
 ### Systematic Analysis of PMC Open Access Literature for Prioritized Genes
 
-**Total Genes Analyzed:** 10
-**Total Articles Analyzed:** 50
+. Overall Summary based on the provided articles
+Across the 50 full-text scientific articles concerning 10 different genes, several biological terms, key findings, and gene-disease associations are frequently discussed. The most frequent and important biological terms across these publications include "gene expression", "protein", "cells", "signaling pathway", "mutation", "knockdown", "transfection", "reversal learning", "apoptosis", and "inflammation".
 
-#### 1. Overall Summary
+Key findings and gene-disease associations observed across the articles are diverse, reflecting the varied functions of the genes studied. For example, SYN3 is discussed in the context of synthetic promoters in plants under stress, as a signaling enhancer ameliorating retinal ganglion cell degeneration in diabetic retinopathy, and in relation to reversal learning performance. EFCAB6 is associated with disorders of sex development, motile cilia, melanoma, pain responses in sensory neurons, and cardiac hypertrophy. LARGE1 is linked to α-dystroglycan glycosylation and muscular dystrophy, neuroepithelial tumors, non-small-cell lung cancer prognosis, and spinal muscular atrophy. CELSR1 is implicated in neuroprotection after cerebral ischemic injury, G protein signaling, spina bifida, and lymphedema. PACSIN2 is discussed in relation to podocyte architecture in kidney disease, autophagy and drug cytotoxicity in cancer, drug resistance in leukemia, endocytosis in the kidney, and endothelial migration in angiogenesis. CECR2 is explored for its cytotoxic activity in cancer, binding to acetylated proteins, association with neural tube defects, and role in somatic cell reprogramming. SEZ6L is linked to motor functions and neurodegeneration, and complement regulation. MYO18B is associated with proliferation and migration in gastric cancer, skeletal muscle proliferation in rheumatoid arthritis, hepatocellular carcinoma progression, sarcomere structure, and nemaline myopathy. TBC1D22A is related to prognosis in ovarian cancer, interactions with viral proteins, cisplatin resistance in ovarian cancer, and genetic epilepsy. TAFA5 is discussed for its role in proliferation and migration in gastric cancer, its function in the spinal cord and pain relief, its association with pulmonary function, and its potential as a biomarker for metabolic disorders.
 
-Based on the provided 50 full-text articles, a summary of the most frequent and important biological terms, key findings, and gene-disease associations is presented below.
+Correlations between terms reveal interconnected biological processes. For instance, mutations in genes affecting protein function can impact signaling pathways, leading to cellular dysfunction and disease (e.g., EFCAB6 mutations and DSD, CECR2 mutations and neural tube defects). The regulation of gene expression is a recurring theme, often linked to disease pathogenesis or potential therapeutic interventions (e.g., synthetic promoters to control gene expression, altered MYO18B expression in cancer). Cell proliferation, migration, and apoptosis are frequently discussed in the context of cancer progression and potential targets for therapy (e.g., TAFA5 promoting gastric cancer cell proliferation, MYO18B promoting hepatocellular carcinoma progression, PACSIN2's role in apoptosis and cell migration, CECR2's cytotoxic activity). Signaling pathways, such as Wnt/PKC and PI3K/AKT/mTOR, are highlighted as crucial mediators of cellular processes and disease development (e.g., CELSR1 through Wnt/PKC signaling, MYO18B activating PI3K/AKT/mTOR). The concept of drug resistance is explored in several contexts, including cancer treatment and epilepsy, with some genes potentially serving as biomarkers or targets to overcome resistance (e.g., PACSIN2 and drug cytotoxicity/resistance, TBC1D22A and cisplatin resistance).
 
-*   **Key Biological Terms:** The most frequent terms relate to gene expression, protein function, cell differentiation, cell death (apoptosis and necrosis), signal transduction pathways, and tissue specificity. Specific processes like angiogenesis, neurogenesis, and water-deficit stress response are also prominent. Terms related to specific experimental techniques such as RNA-seq, qPCR, and immunohistochemistry are also common.
+The implications for disease based on these correlations suggest that common molecular mechanisms and pathways are involved in seemingly disparate conditions. Understanding the interplay between gene mutations, protein function, signaling pathways, and cellular processes like proliferation and apoptosis is crucial for developing targeted therapies and diagnostic biomarkers. The involvement of some genes in both developmental disorders and adult-onset diseases highlights their fundamental roles in biological processes throughout life. The tissue-specific functions and expression patterns of these genes also underscore the complexity of disease pathogenesis and the need for context-specific investigations. The exploration of potential drug targets and biomarkers across different diseases associated with these genes offers promising avenues for future research and clinical applications.
 
-*   **Key Findings:** A significant number of articles focus on the design and application of synthetic promoters to control gene expression in plants, particularly in response to environmental stresses like water deficit (PMCID: 11123411). Another key finding is the identification of SYN3 as a potential therapeutic target for diabetic retinopathy, with a newly developed cyclic peptide showing promise in ameliorating retinal ganglion cell degeneration (PMCID: 11528515). Several articles also explore the role of specific genes in cancer progression, including the identification of novel mutations and their impact on cell proliferation, migration, and drug resistance.
+2. Comparative Analysis with External Databases UniProt
+Comparison of the information extracted from the provided articles with protein function annotations and other information retrieved from UniProt reveals both consistencies and discrepancies in the understanding of these genes.
 
-*   **Gene-Disease Associations:** Several genes are linked to specific diseases. SYN3 is associated with retinal ganglion cell degeneration in diabetic retinopathy (PMCID: 11528515) and behavioral flexibility deficits (PMCID: 8431823). ERCC6 is linked to cerebro-oculo-facio-skeletal syndrome (COFS) (PMCID: 6625147). BRIP1 is associated with Fanconi anemia (PMCID: 6625147). Gαi1/3 is associated with diabetic retinal neurodegeneration (PMCID: 11528515). PSD95 is associated with Angelman syndrome (PMCID: 11528515). LARGE1 is associated with muscular dystrophy (PMCID: 6500046) and bladder cancer (PMCID: 3962717).
+SYN3: UniProt confirms that Synapsin-3 (SYN3) is involved in the regulation of neurotransmitter release and synaptogenesis. This is consistent with the article discussing SYN3's role in behavioral flexibility, which is heavily influenced by neurotransmitter dynamics. The article also mentions its involvement in diabetic retinopathy, which affects neuronal cells in the retina, aligning with UniProt's annotation of its function in the nervous system. UniProt also notes ATP and calcium binding, and localization to synaptic vesicle membranes.
+EFCAB6: UniProt indicates that EFCAB6 is an EF-hand calcium-binding domain-containing protein that negatively regulates the androgen receptor and is a microtubule inner protein in cilia axonemes required for motile cilia beating. The articles connect EFCAB6 to disorders of sex development (potentially linked to androgen receptor regulation), motile cilia (directly aligning with UniProt's function), melanoma, pain responses in sensory neurons, and cardiac hypertrophy. The association with melanoma, pain, and cardiac hypertrophy are not directly explained by the primary functions listed in UniProt, suggesting potential broader roles or involvement in pathways not yet fully characterized in UniProt.
+LARGE1: UniProt describes LARGE1 as a bifunctional glycosyltransferase crucial for the maturation of alpha-dystroglycan (DAG1) through glycosylation, enabling it to bind to extracellular matrix proteins like laminin. This is consistent with the article linking LARGE1 to alpha-dystroglycan glycosylation and muscular dystrophy (dystroglycanopathy). UniProt also lists its involvement in muscular dystrophy-dystroglycanopathy congenital with impaired intellectual development and lissencephaly, which aligns with the disease associations found in the articles. The articles also discuss its role in various cancers and spinal muscular atrophy, suggesting broader implications beyond its established role in muscular dystrophy.
+CELSR1: UniProt identifies CELSR1 as a receptor involved in cell-cell signaling during nervous system formation and planar cell polarity. This aligns well with the articles discussing its role in neuroprotection in cerebral ischemic injury (related to nervous system function) and spina bifida (a neural tube defect related to developmental signaling and planar cell polarity). The article also mentions its involvement in G protein signaling and lymphedema, which are supported by UniProt's broader functional annotations including G protein-coupled receptor activity and roles in development.
+PACSIN2: UniProt states that PACSIN2 regulates the morphogenesis and endocytosis of caveolae, plays a role in intracellular vesicle-mediated transport, and is essential for endothelial organization in sprouting angiogenesis and modulating cell junctions. This is consistent with the articles linking PACSIN2 to podocyte architecture (related to cell morphology and cytoskeleton), endocytosis in the kidney, and endothelial migration in angiogenesis. The articles also discuss its role in autophagy and drug cytotoxicity in cancer, suggesting broader involvement in cellular processes beyond membrane trafficking.
+CECR2: UniProt describes CECR2 as a chromatin remodeling regulator that is a subunit of ATP-dependent ISWI chromatin remodeling complexes involved in DNA-templated processes like replication, transcription, and repair. It also recognizes and binds acylated histones. This aligns with the articles discussing CECR2's cytotoxic activity in cancer (related to uncontrolled proliferation and DNA processes), binding to acetylated proteins (directly supported by UniProt), and its role in somatic cell reprogramming (involving significant chromatin changes). The association with neural tube defects is also consistent with UniProt's annotation of CECR2's role in neurulation and development.
+SEZ6L: UniProt indicates that SEZ6L is a single-pass type I membrane protein that may contribute to specialized endoplasmic reticulum functions in neurons and is a candidate tumor suppressor gene. The articles link SEZ6L to motor functions and neurodegeneration and complement regulation. UniProt's annotation of tissue specificity showing expression exclusively in the brain, predominantly in neurons, supports its role in neurological functions. The articles' findings on motor coordination deficits and complement regulation suggest specific functional aspects not fully detailed in UniProt's main function annotation.
+MYO18B: UniProt identifies MYO18B as an unconventional myosin involved in intracellular trafficking and potentially regulating muscle-specific genes in the nucleus. It is also associated with Klippel-Feil syndrome 4, autosomal recessive, with nemaline myopathy. The articles discuss MYO18B's role in proliferation and migration in gastric cancer, skeletal muscle proliferation in rheumatoid arthritis, hepatocellular carcinoma progression, and sarcomere structure, which aligns with its function as a myosin and its involvement in muscle and cellular movement. The association with nemaline myopathy in the articles is directly supported by UniProt's disease annotation.
+TBC1D22A: UniProt suggests that TBC1D22A may act as a GTPase-activating protein for Rab family proteins and is involved in protein homodimerization. The articles link TBC1D22A to prognosis in ovarian cancer, interactions with viral proteins, cisplatin resistance in ovarian cancer, and genetic epilepsy. UniProt's annotation of its function as a GTPase-activating protein hints at its involvement in cellular signaling and trafficking, which could indirectly relate to these diverse disease associations, though the specific mechanisms are not fully detailed in UniProt.
+TAFA5: UniProt describes TAFA5 as a chemokine-like protein that regulates cell proliferation and migration through activation of G protein-coupled receptors (GPCRs). It is also an adipokine regulating vascular smooth muscle cells. The articles discuss TAFA5's role in proliferation and migration in gastric cancer (consistent with UniProt's function), its function in the spinal cord and pain relief, its association with pulmonary function, and its potential as a biomarker for metabolic disorders. The roles in the spinal cord, pain relief, pulmonary function, and metabolic disorders suggest broader functions or tissue specificities not fully elaborated in UniProt's main function annotation.
+Significance of Consistencies and Discrepancies:
 
-*   **Correlations Between Terms:** A strong correlation exists between water-deficit stress and the expression of specific genes in poplar leaves, leading to the development of synthetic promoters inducible by drought. There is also a correlation between BDNF signaling and RGC survival, with compounds enhancing BDNF signaling showing promise in treating diabetic retinopathy. In cancer research, there is a correlation between specific gene mutations (e.g., in SYN3) and altered cell proliferation and migration, as well as drug resistance.
+The consistencies between the provided articles and UniProt reinforce the known fundamental biological roles of these genes in processes such as neurotransmission (SYN3), protein glycosylation (LARGE1), cell signaling and polarity (CELSR1), membrane trafficking (PACSIN2), chromatin remodeling (CECR2), and muscle function (MYO18B). These agreements validate the findings presented in the research articles and highlight the well-established functions of these proteins.
 
-*   **Implications for Disease:** The correlations identified have significant implications for disease. The development of water-deficit stress-inducible promoters could lead to crops more resistant to drought. The identification of compounds enhancing BDNF signaling could lead to new treatments for diabetic retinopathy. The identification of genes involved in cancer progression could lead to new therapeutic targets and diagnostic markers.
+The discrepancies and the broader disease associations found in the articles compared to the primary functions listed in UniProt are also significant. They suggest that these genes may have more diverse roles or be involved in complex biological networks that extend beyond their currently well-defined functions in databases like UniProt. These discrepancies indicate potential areas for further research to fully elucidate the multifaceted contributions of these genes to human health and disease. The articles provide valuable context on the clinical relevance and disease associations that can inform and expand the annotations in comprehensive databases like UniProt. The involvement of several genes in multiple seemingly unrelated conditions (e.g., EFCAB6, LARGE1, TBC1D22A, TAFA5) underscores the complexity of genetic influences on disease susceptibility and pathogenesis.
 
-#### 2. Comparative Analysis with External Databases
-
-A comparative analysis of the genes mentioned in the provided articles with information from external databases (UniProtKB, GeneCards, OMIM) is presented below.
-
-*   **SYN3:**
-    *   **UniProtKB:** Encodes synapsin III, a neuron-specific phosphoprotein associated with synaptic vesicles. Involved in regulating neurotransmitter release and neuronal development.
-    *   **GeneCards:** Synapsin III is involved in the regulation of axonogenesis and synaptogenesis. Expression is primarily in the brain.
-    *   **OMIM:** No direct entry for disease association.
-    *   **Comparison:** The articles confirm the role of SYN3 in neuronal function, particularly in neurotransmitter release, which aligns with UniProtKB and GeneCards. The articles also link SYN3 to behavioral flexibility, which is not explicitly mentioned in UniProtKB or GeneCards but is consistent with its role in neuronal function.
-
-*   **EFCAB6:**
-    *   **UniProtKB:** Encodes EF-hand calcium-binding domain-containing protein 6. Function is not well defined, but it is thought to be involved in calcium-dependent signaling pathways.
-    *   **GeneCards:** EFCAB6 is involved in calcium binding. Expressed in various tissues, including the brain.
-    *   **OMIM:** No direct entry for disease association.
-    *   **Comparison:** The articles link EFCAB6 to sex development and COFS syndrome, which is not explicitly mentioned in UniProtKB or GeneCards. However, the articles also confirm the role of EFCAB6 in calcium binding, which aligns with UniProtKB and GeneCards.
-
-*   **LARGE1:**
-    *   **UniProtKB:** Encodes a glycosyltransferase involved in the glycosylation of alpha-dystroglycan. Essential for the proper formation of the dystroglycan complex.
-    *   **GeneCards:** LARGE1 is involved in muscular dystrophy.
-    *   **OMIM:** Links mutations in LARGE1 to various forms of congenital muscular dystrophy.
-    *   **Comparison:** The articles confirm the role of LARGE1 in glycosylation of alpha-dystroglycan and its association with muscular dystrophy, which aligns with UniProtKB, GeneCards, and OMIM. The articles also link LARGE1 to cancer, which is not explicitly mentioned in UniProtKB, GeneCards, or OMIM but is consistent with its role in cell signaling and growth.
-
-*   **TBC1D22A:**
-    *   **UniProtKB:** Encodes a protein containing a TBC domain, suggesting a role as a Rab GTPase-activating protein (GAP).
-    *   **GeneCards:** TBC1D22A is involved in protein transport and membrane trafficking.
-    *   **OMIM:** Links mutations in TBC1D22A to autosomal recessive intellectual disability.
-    *   **Comparison:** The articles link TBC1D22A to epilepsy and cancer, which is not explicitly mentioned in UniProtKB, GeneCards, or OMIM but is consistent with its role in protein transport and membrane trafficking.
-
-*   **CELSR1:**
-    *   **UniProtKB:** Encodes a seven-transmembrane cadherin involved in cell adhesion and planar cell polarity.
-    *   **GeneCards:** CELSR1 is involved in neural tube defects and other developmental processes.
-    *   **OMIM:** Links mutations in CELSR1 to various forms of neural tube defects, including craniorachischisis.
-    *   **Comparison:** The articles confirm the role of CELSR1 in cell adhesion, planar cell polarity, and neural tube defects, which aligns with UniProtKB, GeneCards, and OMIM.
-
-*   **MYO18B:**
-    *   **UniProtKB:** Encodes an unconventional myosin heavy chain expressed in muscle tissue.
-    *   **GeneCards:** MYO18B is involved in muscle function.
-    *   **OMIM:** Links mutations in MYO18B to nemaline myopathy.
-    *   **Comparison:** The articles confirm the role of MYO18B in muscle function and its association with nemaline myopathy, which aligns with UniProtKB, GeneCards, and OMIM. The articles also link MYO18B to cancer, which is not explicitly mentioned in UniProtKB, GeneCards, or OMIM but is consistent with its role in cell signaling and growth.
-
-*   **TAFA5:**
-    *   **UniProtKB:** Encodes a secreted protein belonging to the TAFA family, which are chemokine-like proteins.
-    *   **GeneCards:** TAFA5 is involved in immune response and inflammation.
-    *   **OMIM:** No direct entry for disease association.
-    *   **Comparison:** The articles confirm the role of TAFA5 as a secreted protein and its involvement in immune response and inflammation, which aligns with UniProtKB and GeneCards. The articles also link TAFA5 to cancer and neurological disorders, which is not explicitly mentioned in UniProtKB or GeneCards but is consistent with its role in cell signaling and communication.
-
-*   **PACSIN2:**
-    *   **UniProtKB:** Encodes a cytoplasmic adapter protein involved in membrane remodeling and endocytosis.
-    *   **GeneCards:** PACSIN2 is involved in synaptic vesicle trafficking and neuronal function.
-    *   **OMIM:** No direct entry for disease association.
-    *   **Comparison:** The articles confirm the role of PACSIN2 in membrane remodeling and endocytosis, which aligns with UniProtKB and GeneCards. The articles also link PACSIN2 to cancer, diabetic retinopathy, and behavioral flexibility, which is not explicitly mentioned in UniProtKB or GeneCards but is consistent with its role in cell signaling and trafficking.
-
-**Consistencies and Discrepancies:**
-
-*   There is a general consistency between the information extracted from the articles and the information available in comprehensive databases. The articles often provide more specific and recent findings, such as the role of specific mutations in disease pathogenesis and the involvement of specific signaling pathways.
-*   The articles often link genes to diseases or processes not explicitly mentioned in UniProtKB, GeneCards, or OMIM. This is likely due to the databases not being fully up-to-date with the latest research findings.
-*   Some discrepancies may arise from the different contexts in which the genes are studied. For example, a gene may have a well-established role in neuronal function but a less well-known role in cancer.
-
-**Significance:**
-
-*   The consistencies validate the findings presented in the articles and reinforce the established knowledge about these genes.
-*   The discrepancies highlight the importance of text mining of scientific literature to identify novel gene-disease associations and to stay up-to-date with the latest research findings.
-*   The identification of novel gene-disease associations and signaling pathways could lead to new therapeutic targets and diagnostic markers.
+In summary, the comparative analysis reveals that while UniProt provides a solid foundation of known protein functions, the provided articles offer valuable insights into the broader biological contexts, disease associations, and potential therapeutic implications of these genes, highlighting areas where our understanding is still evolving.
 
 ---

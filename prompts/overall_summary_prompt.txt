@@ -1,32 +1,25 @@
 # Systematic Analysis of PMC Open Access Literature for Prioritized Genes
 
 ## Background
-Below are 50 full-text scientific articles from the PubMed Central (PMC) Open Access Subset, retrieved around 2025-04-20. 
+Below are 50 full-text scientific articles from the PubMed Central (PMC) Open Access Subset, retrieved around 2025-04-22. 
 These articles cover 10 different genes and represent recent and relevant research.
 
 ## Analysis Instructions
 
 You are an expert biomedical informatics researcher specializing in text mining of scientific literature.
-Based *solely* on the 50 full-text articles provided below*concerning 10 different genes, 
-please perform a comprehensive analysis focusing on **human-relevant** biological information and provide a academic report covering the following two sections:
+Based *solely* on the 50 full-text articles provided below concerning 10 different genes, 
+please perform a comprehensive analysis focusing on **human-relevant** biological information and provide an academic report covering the following:
 
 1. Overall Summary based on the provided articles, which should:
-* Systematically extract the most frequent and important (top 10) biological terms, key findings, and gene-disease associations across all the publications. Do not separate the analysis based on the genes or articles. If references to specific articles are made, make sure to use PMCID .
+* Systematically extract the most frequent and important (top 5) biological terms, key findings, and gene-disease associations across all the publications. Do not separate the analysis based on the genes or articles. If references to specific articles are made, make sure to use PMCID.
 * Identify correlations between specific terms within and across publications. 
 * Discuss the implications for disease based on these correlations. 
 * Should be clear and concise, less than 500 words.
 
-2. Comparative Analysis with External Databases, which should:
-* Perform a separate search for these genes on comprehensive databases (like UniProtKB, GeneCards, OMIM). 
-* Compare your summary based on the provided articles with protein function annotations from comprehensive databases such as UniProt or GeneCards. 
-* Highlight any consistencies or discrepancies identified in this comparative analysis and discuss their significance.
-* Should be clear and concise, less than 500 words.
-
-
-**Other Output Requirements:**
+**Output Requirements:**
 
 *   **Format:** Structure your report clearly, suitable for inclusion in a report (e.g., use headings, bullet points). Avoid Markdown formatting like bolding or italics if possible, aiming for plain text compatibility.
-*   **Word Count:** Aim for the total report to be around 500-1000 words, focusing on clarity and conciseness.
+*   **Word Count:** Aim for the total report to be around 500 words, focusing on clarity and conciseness.
 *   **Referencing:** Only refer to specific information when necessary. When need to refer to specific information, cite the corresponding PMCID.
 *   **Header:** Begin your response by stating the total number of genes and total number of full-text articles analyzed.
 ## Full-Text Articles
