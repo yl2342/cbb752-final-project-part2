@@ -1,7 +1,7 @@
 # Systematic Analysis of PMC Open Access Literature for Prioritized Genes
 
 ## Background
-Below are 50 full-text scientific articles from the PubMed Central (PMC) Open Access Subset, retrieved around 2025-04-22. 
+Below are 50 full-text scientific articles from the PubMed Central (PMC) Open Access Subset, retrieved around 2025-04-23. 
 These articles cover 10 different genes and represent recent and relevant research.
 
 ## Analysis Instructions

@@ -1,0 +1,33 @@
+2025-04-23 08:51:53,794 - INFO - Starting LLM Mining script... Logging to logs/llm_mining_20250423_085153.log
+2025-04-23 08:51:53,795 - INFO - Arguments received: Namespace(input_dir='pmc_full_texts', model='gemini-2.0-flash')
+2025-04-23 08:51:53,795 - INFO - .env file loaded (if exists).
+2025-04-23 08:51:53,795 - INFO - Loading PMC articles from directory: 'pmc_full_texts'
+2025-04-23 08:51:53,796 - INFO - Found 10 PMC article JSON files in 'pmc_full_texts'
+2025-04-23 08:51:53,796 - INFO - Loaded 5 articles for gene 'SYN3' from 'SYN3_pmc_articles.json'
+2025-04-23 08:51:53,797 - INFO - Loaded 5 articles for gene 'EFCAB6' from 'EFCAB6_pmc_articles.json'
+2025-04-23 08:51:53,798 - INFO - Loaded 5 articles for gene 'LARGE1' from 'LARGE1_pmc_articles.json'
+2025-04-23 08:51:53,798 - INFO - Loaded 5 articles for gene 'CELSR1' from 'CELSR1_pmc_articles.json'
+2025-04-23 08:51:53,799 - INFO - Loaded 5 articles for gene 'PACSIN2' from 'PACSIN2_pmc_articles.json'
+2025-04-23 08:51:53,800 - INFO - Loaded 5 articles for gene 'CECR2' from 'CECR2_pmc_articles.json'
+2025-04-23 08:51:53,801 - INFO - Loaded 5 articles for gene 'SEZ6L' from 'SEZ6L_pmc_articles.json'
+2025-04-23 08:51:53,801 - INFO - Loaded 5 articles for gene 'TAFA5' from 'TAFA5_pmc_articles.json'
+2025-04-23 08:51:53,802 - INFO - Loaded 5 articles for gene 'MYO18B' from 'MYO18B_pmc_articles.json'
+2025-04-23 08:51:53,803 - INFO - Loaded 5 articles for gene 'TBC1D22A' from 'TBC1D22A_pmc_articles.json'
+2025-04-23 08:51:53,803 - INFO - Total articles loaded: 50 across 10 genes.
+2025-04-23 08:51:53,831 - INFO - Generating overall summary prompt...
+2025-04-23 08:51:53,834 - INFO - Overall summary prompt generation complete.
+2025-04-23 08:51:53,836 - INFO - Saved analysis prompt to prompts/overall_summary_prompt.txt
+2025-04-23 08:51:53,836 - INFO - Calculating summary prompt token count for model: gemini-2.0-flash...
+2025-04-23 08:51:56,154 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:countTokens "HTTP/1.1 200 OK"
+2025-04-23 08:51:56,159 - INFO - ---> Estimated token count for the summary prompt: 531310 <--- (gemini-2.0-flash)
+2025-04-23 08:51:56,159 - WARNING - --- CONFIRMATION REQUIRED BEFORE FIRST API CALL (OVERALL SUMMARY) ---
+2025-04-23 08:51:56,159 - WARNING - Model to be used: gemini-2.0-flash
+2025-04-23 08:51:56,159 - WARNING - Calculated Input Tokens: 531310
+2025-04-23 08:51:56,159 - WARNING - Maximum Output Tokens Configured: 16384
+2025-04-23 08:52:09,004 - INFO - User confirmed. Proceeding with first API call using model: gemini-2.0-flash...
+2025-04-23 08:52:09,005 - INFO - Sending prompt to Gemini API using model: gemini-2.0-flash...
+2025-04-23 08:52:09,005 - INFO - Set up API without grounding tools for: gemini-2.0-flash
+2025-04-23 08:52:09,007 - INFO - AFC is enabled with max remote calls: 10.
+2025-04-23 08:52:21,185 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent "HTTP/1.1 499 Client Closed Request"
+2025-04-23 08:52:21,188 - ERROR - An error occurred while calling the Gemini API with model gemini-2.0-flash: 499 CANCELLED. {'error': {'code': 499, 'message': 'The operation was cancelled.', 'status': 'CANCELLED'}}
+2025-04-23 08:52:21,188 - ERROR - Failed to get a valid response for overall summary. Exiting.

@@ -1,0 +1,62 @@
+2025-04-23 09:58:32,779 - INFO - Starting LLM Mining script... Logging to logs/llm_mining_20250423_095832.log
+2025-04-23 09:58:32,780 - INFO - Arguments received: Namespace(input_dir='pmc_full_texts')
+2025-04-23 09:58:32,781 - INFO - .env file loaded (if exists).
+2025-04-23 09:58:32,781 - INFO - Loading PMC articles from directory: 'pmc_full_texts'
+2025-04-23 09:58:32,781 - INFO - Found 10 PMC article JSON files in 'pmc_full_texts'
+2025-04-23 09:58:32,782 - INFO - Loaded 5 articles for gene 'SYN3' from 'SYN3_pmc_articles.json'
+2025-04-23 09:58:32,783 - INFO - Loaded 5 articles for gene 'EFCAB6' from 'EFCAB6_pmc_articles.json'
+2025-04-23 09:58:32,784 - INFO - Loaded 5 articles for gene 'LARGE1' from 'LARGE1_pmc_articles.json'
+2025-04-23 09:58:32,785 - INFO - Loaded 5 articles for gene 'CELSR1' from 'CELSR1_pmc_articles.json'
+2025-04-23 09:58:32,787 - INFO - Loaded 5 articles for gene 'PACSIN2' from 'PACSIN2_pmc_articles.json'
+2025-04-23 09:58:32,788 - INFO - Loaded 5 articles for gene 'CECR2' from 'CECR2_pmc_articles.json'
+2025-04-23 09:58:32,789 - INFO - Loaded 5 articles for gene 'SEZ6L' from 'SEZ6L_pmc_articles.json'
+2025-04-23 09:58:32,790 - INFO - Loaded 5 articles for gene 'TAFA5' from 'TAFA5_pmc_articles.json'
+2025-04-23 09:58:32,791 - INFO - Loaded 5 articles for gene 'MYO18B' from 'MYO18B_pmc_articles.json'
+2025-04-23 09:58:32,793 - INFO - Loaded 5 articles for gene 'TBC1D22A' from 'TBC1D22A_pmc_articles.json'
+2025-04-23 09:58:32,793 - INFO - Total articles loaded: 50 across 10 genes.
+2025-04-23 09:58:32,822 - INFO - Generating overall summary prompt...
+2025-04-23 09:58:32,825 - INFO - Overall summary prompt generation complete.
+2025-04-23 09:58:32,830 - INFO - Saved analysis prompt to prompts/overall_summary_prompt.txt
+2025-04-23 09:58:32,830 - WARNING - --- CONFIRMATION REQUIRED BEFORE FIRST API CALL (OVERALL SUMMARY) ---
+2025-04-23 09:58:32,830 - WARNING - Maximum Output Tokens Configured: 8192
+2025-04-23 09:58:40,257 - INFO - User entered model: gemini-2.0-flash-lite
+2025-04-23 09:58:40,257 - INFO - Calculating summary prompt token count for model: gemini-2.0-flash-lite...
+2025-04-23 09:58:43,052 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:countTokens "HTTP/1.1 200 OK"
+2025-04-23 09:58:43,056 - INFO - ---> Estimated token count for the summary prompt: 531310 <--- (gemini-2.0-flash-lite)
+2025-04-23 09:58:43,057 - WARNING - Model to be used: gemini-2.0-flash-lite
+2025-04-23 09:58:43,057 - WARNING - Calculated Input Tokens: 531310
+2025-04-23 09:58:43,057 - INFO - Proceeding with first API call using model: gemini-2.0-flash-lite...
+2025-04-23 09:58:43,057 - INFO - Sending prompt to Gemini API using model: gemini-2.0-flash-lite...
+2025-04-23 09:58:43,057 - INFO - Set up API without grounding tools for: gemini-2.0-flash-lite
+2025-04-23 09:58:43,058 - INFO - AFC is enabled with max remote calls: 10.
+2025-04-23 09:58:55,233 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent "HTTP/1.1 200 OK"
+2025-04-23 09:58:55,241 - INFO - AFC remote call 1 is done.
+2025-04-23 09:58:55,241 - INFO - Response received from Gemini API
+2025-04-23 09:58:55,243 - INFO - Saved raw response object to debug/raw_response_no_grounding_tools_20250423_095855.json for debugging
+2025-04-23 09:58:55,244 - INFO - Saved analysis response with 1 parts to llm_responses/overall_summary.txt
+2025-04-23 09:58:55,244 - INFO - Overall summary complete. Prompt saved to prompts/overall_summary_prompt.txt and response saved to llm_responses/overall_summary.txt
+2025-04-23 09:58:55,244 - INFO - Generating comparative analysis prompt...
+2025-04-23 09:58:55,244 - INFO - Comparative analysis prompt generation complete.
+2025-04-23 09:58:55,244 - INFO - Saved analysis prompt to prompts/comparative_analysis_prompt.txt
+2025-04-23 09:58:55,244 - WARNING - --- CONFIRMATION REQUIRED BEFORE SECOND API CALL (COMPARATIVE ANALYSIS) ---
+2025-04-23 09:58:55,245 - WARNING - Maximum Output Tokens Configured: 8192
+2025-04-23 09:58:55,245 - WARNING - This call will use Google Search tools for UniProt data retrieval.
+2025-04-23 09:59:07,568 - INFO - User entered model: gemini-2.5-flash-preview-04-17
+2025-04-23 09:59:07,569 - INFO - Calculating comparative prompt token count for model: gemini-2.5-flash-preview-04-17...
+2025-04-23 09:59:07,688 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:countTokens "HTTP/1.1 200 OK"
+2025-04-23 09:59:07,689 - INFO - ---> Estimated token count for the comparative prompt: 1268 <--- (gemini-2.5-flash-preview-04-17)
+2025-04-23 09:59:07,689 - WARNING - Model to be used: gemini-2.5-flash-preview-04-17
+2025-04-23 09:59:07,689 - WARNING - Calculated Input Tokens: 1268
+2025-04-23 09:59:07,689 - INFO - Proceeding with second API call using model: gemini-2.5-flash-preview-04-17...
+2025-04-23 09:59:07,689 - INFO - Sending prompt to Gemini API using model: gemini-2.5-flash-preview-04-17...
+2025-04-23 09:59:07,690 - INFO - Set up API and grounding tool (Google Search) for: gemini-2.5-flash-preview-04-17
+2025-04-23 09:59:07,690 - INFO - AFC is enabled with max remote calls: 10.
+2025-04-23 09:59:25,961 - INFO - HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-04-17:generateContent "HTTP/1.1 200 OK"
+2025-04-23 09:59:25,969 - INFO - AFC remote call 1 is done.
+2025-04-23 09:59:25,969 - INFO - Response received from Gemini API
+2025-04-23 09:59:25,972 - INFO - Saved raw response object to debug/raw_response_with_grounding_tools_20250423_095925.json for debugging
+2025-04-23 09:59:25,972 - INFO - Saved analysis response with 1 parts to llm_responses/comparative_analysis.txt
+2025-04-23 09:59:25,974 - INFO - Saved grounding metadata to llm_responses/comparative_analysis_grounding.json
+2025-04-23 09:59:25,974 - INFO - Comparative analysis complete. Prompt saved to prompts/comparative_analysis_prompt.txt and response saved to llm_responses/comparative_analysis.txt
+2025-04-23 09:59:25,974 - INFO - Grounding metadata saved to llm_responses/comparative_analysis_grounding.json
+2025-04-23 09:59:25,974 - INFO - LLM Mining script finished successfully.

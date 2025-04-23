@@ -196,7 +196,7 @@ def initalize_gemini_client(api_key):
     client = genai.Client(api_key=api_key) 
     return client
 
-def get_gemini_response(client, prompt, model_name='gemini-2.0-flash', max_output_tokens= 16384, use_grounding_tools=False):
+def get_gemini_response(client, prompt, model_name='gemini-2.0-flash', max_output_tokens= 8192, use_grounding_tools=False):
     """Send the prompt to Google's Gemini API and get a response using the specified model, with optional tools"""
     logging.info(f"Sending prompt to Gemini API using model: {model_name}...")
 
@@ -335,9 +335,6 @@ def main():
     parser.add_argument('--input_dir', '-i',
                         default="pmc_full_texts", # Default input dir
                         help='Directory containing the PMC article JSON files (default: pmc_full_texts).')
-    parser.add_argument('--model', '-m',
-                        default='gemini-2.0-flash', # Set a default model
-                        help='Name of the Gemini model to use (default: gemini-2.0-flash).') 
 
     args = parser.parse_args()
     logging.info(f"Arguments received: {args}")
@@ -379,35 +376,35 @@ def main():
     # Save the prompt
     summary_prompt_file = save_prompt(summary_prompt, filename="overall_summary_prompt.txt", output_dir="prompts")
 
-    # Calculate token count for summary prompt
-    try:
-        logging.info(f"Calculating summary prompt token count for model: {args.model}...")
-        token_count_response = client.models.count_tokens(
-            model = args.model,
-            contents = summary_prompt
-        )
-        summary_token_count = token_count_response.total_tokens
-        logging.info(f"---> Estimated token count for the summary prompt: {summary_token_count} <--- ({args.model})")
-    except Exception as e:
-        logging.warning(f"Could not count tokens using model {args.model}. Error: {e}")
-        summary_token_count = "unknown"
-
     # --- Confirmation before first API Call --- 
     logging.warning("--- CONFIRMATION REQUIRED BEFORE FIRST API CALL (OVERALL SUMMARY) ---")
-    logging.warning(f"Model to be used: {args.model}")
-    logging.warning(f"Calculated Input Tokens: {summary_token_count}")
-    max_output_tokens_config = 16384
+    max_output_tokens_config = 8192
     logging.warning(f"Maximum Output Tokens Configured: {max_output_tokens_config}")
     
     try:
-        confirm = input(f"To proceed, retype the model name ({args.model}) or enter a different model name: ")
-        if not confirm.strip():
+        model_name = input("Enter the Gemini model name to use (e.g., gemini-2.0-flash-lite): ")
+        if not model_name.strip():
             logging.info("No model name entered. Exiting.")
             sys.exit(0)
-        elif confirm.strip() != args.model:
-            logging.info(f"Model changed from {args.model} to {confirm.strip()}")
-            args.model = confirm.strip()
-        logging.info(f"User confirmed. Proceeding with first API call using model: {args.model}...")
+        logging.info(f"User entered model: {model_name}")
+        
+        # Calculate token count for summary prompt
+        try:
+            logging.info(f"Calculating summary prompt token count for model: {model_name}...")
+            token_count_response = client.models.count_tokens(
+                model = model_name,
+                contents = summary_prompt
+            )
+            summary_token_count = token_count_response.total_tokens
+            logging.info(f"---> Estimated token count for the summary prompt: {summary_token_count} <--- ({model_name})")
+        except Exception as e:
+            logging.warning(f"Could not count tokens using model {model_name}. Error: {e}")
+            summary_token_count = "unknown"
+            
+        logging.warning(f"Model to be used: {model_name}")
+        logging.warning(f"Calculated Input Tokens: {summary_token_count}")
+        
+        logging.info(f"Proceeding with first API call using model: {model_name}...")
     except EOFError:
         logging.error("Could not get user confirmation (EOFError). Exiting.")
         sys.exit(1)
@@ -416,7 +413,7 @@ def main():
     summary_response = get_gemini_response(
         client=client, 
         prompt=summary_prompt, 
-        model_name=args.model, 
+        model_name=model_name, 
         max_output_tokens=max_output_tokens_config,
         use_grounding_tools=False
     )
@@ -448,35 +445,35 @@ def main():
     # Save the prompt
     comparative_prompt_file = save_prompt(comparative_prompt, filename="comparative_analysis_prompt.txt", output_dir="prompts")
 
-    # Calculate token count for comparative prompt
-    try:
-        logging.info(f"Calculating comparative prompt token count for model: {args.model}...")
-        token_count_response = client.models.count_tokens(
-            model = args.model,
-            contents = comparative_prompt
-        )
-        comparative_token_count = token_count_response.total_tokens
-        logging.info(f"---> Estimated token count for the comparative prompt: {comparative_token_count} <--- ({args.model})")
-    except Exception as e:
-        logging.warning(f"Could not count tokens using model {args.model}. Error: {e}")
-        comparative_token_count = "unknown"
-
     # --- Confirmation before second API Call --- 
     logging.warning("--- CONFIRMATION REQUIRED BEFORE SECOND API CALL (COMPARATIVE ANALYSIS) ---")
-    logging.warning(f"Model to be used: {args.model}")
-    logging.warning(f"Calculated Input Tokens: {comparative_token_count}")
     logging.warning(f"Maximum Output Tokens Configured: {max_output_tokens_config}")
     logging.warning("This call will use Google Search tools for UniProt data retrieval.")
     
     try:
-        confirm = input(f"To proceed, retype the model name ({args.model}) or enter a different model name: ")
-        if not confirm.strip():
+        model_name = input("Enter the Gemini model name to use (e.g., gemini-2.5-flash-preview-04-17): ")
+        if not model_name.strip():
             logging.info("No model name entered. Exiting.")
             sys.exit(0)
-        elif confirm.strip() != args.model:
-            logging.info(f"Model changed from {args.model} to {confirm.strip()}")
-            args.model = confirm.strip()
-        logging.info(f"User confirmed. Proceeding with second API call using model: {args.model}...")
+        logging.info(f"User entered model: {model_name}")
+        
+        # Calculate token count for comparative prompt
+        try:
+            logging.info(f"Calculating comparative prompt token count for model: {model_name}...")
+            token_count_response = client.models.count_tokens(
+                model = model_name,
+                contents = comparative_prompt
+            )
+            comparative_token_count = token_count_response.total_tokens
+            logging.info(f"---> Estimated token count for the comparative prompt: {comparative_token_count} <--- ({model_name})")
+        except Exception as e:
+            logging.warning(f"Could not count tokens using model {model_name}. Error: {e}")
+            comparative_token_count = "unknown"
+            
+        logging.warning(f"Model to be used: {model_name}")
+        logging.warning(f"Calculated Input Tokens: {comparative_token_count}")
+        
+        logging.info(f"Proceeding with second API call using model: {model_name}...")
     except EOFError:
         logging.error("Could not get user confirmation (EOFError). Exiting.")
         sys.exit(1)
@@ -485,7 +482,7 @@ def main():
     comparative_response = get_gemini_response(
         client=client, 
         prompt=comparative_prompt, 
-        model_name=args.model, 
+        model_name=model_name, 
         max_output_tokens=max_output_tokens_config,
         use_grounding_tools=True
     )
